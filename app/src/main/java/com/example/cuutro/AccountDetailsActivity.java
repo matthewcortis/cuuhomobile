@@ -45,6 +45,7 @@ public class AccountDetailsActivity extends AppCompatActivity {
     private MaterialButton pickPreciseAddressButton;
     private final ExecutorService geocodeExecutor = Executors.newSingleThreadExecutor();
     private ActivityResultLauncher<String[]> locationPermissionLauncher;
+    private CancellationSignal currentLocationCancellation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,6 +129,10 @@ public class AccountDetailsActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
+        if (currentLocationCancellation != null) {
+            currentLocationCancellation.cancel();
+            currentLocationCancellation = null;
+        }
         geocodeExecutor.shutdownNow();
         if (mapView != null) {
             mapView.onDestroy();
@@ -197,79 +202,123 @@ public class AccountDetailsActivity extends AppCompatActivity {
             return;
         }
 
-        String provider = getBestProvider(locationManager);
-        if (provider == null) {
+        if (!LocationManagerCompat.isLocationEnabled(locationManager)) {
             Toast.makeText(this, R.string.account_details_location_disabled, Toast.LENGTH_SHORT).show();
             return;
         }
 
+        Location knownLocation = getMostRecentLastKnownLocation(locationManager);
+        if (knownLocation != null) {
+            setPickButtonLoading(true);
+            resolveAddressFromLocation(knownLocation);
+            return;
+        }
+
+        String provider = getBestProvider(locationManager);
+        if (provider == null) {
+            Toast.makeText(this, R.string.account_details_location_unavailable, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         setPickButtonLoading(true);
-        LocationManagerCompat.getCurrentLocation(
-                locationManager,
-                provider,
-                new CancellationSignal(),
-                ContextCompat.getMainExecutor(this),
-                location -> {
-                    Location targetLocation = location;
-                    if (targetLocation == null) {
-                        targetLocation = getLastKnownLocation(locationManager, provider);
-                    }
-                    if (targetLocation == null) {
-                        setPickButtonLoading(false);
-                        Toast.makeText(
-                                this,
-                                R.string.account_details_location_unavailable,
-                                Toast.LENGTH_SHORT
-                        ).show();
-                        return;
-                    }
-                    resolveAddressFromLocation(targetLocation);
-                }
-        );
+        requestCurrentLocation(locationManager, provider, true);
     }
 
     private String getBestProvider(LocationManager locationManager) {
-        boolean hasFine = ContextCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
-        ) == PackageManager.PERMISSION_GRANTED;
-
-        if (hasFine && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+        List<String> providers = locationManager.getProviders(true);
+        if (providers == null || providers.isEmpty()) {
+            return null;
+        }
+        boolean hasFine = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED;
+        if (hasFine && providers.contains(LocationManager.GPS_PROVIDER)) {
             return LocationManager.GPS_PROVIDER;
         }
-        if (locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+        if (providers.contains(LocationManager.NETWORK_PROVIDER)) {
             return LocationManager.NETWORK_PROVIDER;
         }
-        return null;
+        if (providers.contains(LocationManager.PASSIVE_PROVIDER)) {
+            return LocationManager.PASSIVE_PROVIDER;
+        }
+        return providers.get(0);
     }
 
     @SuppressLint("MissingPermission")
-    private Location getLastKnownLocation(LocationManager locationManager, String primaryProvider) {
-        try {
-            Location location = locationManager.getLastKnownLocation(primaryProvider);
-            if (location != null) {
-                return location;
-            }
-            if (!LocationManager.NETWORK_PROVIDER.equals(primaryProvider)) {
-                location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-                if (location != null) {
-                    return location;
-                }
-            }
-            if (!LocationManager.GPS_PROVIDER.equals(primaryProvider)
-                    && ContextCompat.checkSelfPermission(
-                    this,
-                    Manifest.permission.ACCESS_FINE_LOCATION
-            ) == PackageManager.PERMISSION_GRANTED) {
-                location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                if (location != null) {
-                    return location;
-                }
-            }
+    private Location getMostRecentLastKnownLocation(LocationManager locationManager) {
+        List<String> providers = locationManager.getProviders(true);
+        if (providers == null || providers.isEmpty()) {
             return null;
+        }
+        Location bestLocation = null;
+        for (String provider : providers) {
+            Location candidate = getLastKnownLocationSafe(locationManager, provider);
+            if (candidate == null) {
+                continue;
+            }
+            if (bestLocation == null || candidate.getTime() > bestLocation.getTime()) {
+                bestLocation = candidate;
+            }
+        }
+        return bestLocation;
+    }
+
+    @SuppressLint("MissingPermission")
+    private Location getLastKnownLocationSafe(LocationManager locationManager, String provider) {
+        try {
+            return locationManager.getLastKnownLocation(provider);
         } catch (SecurityException ignored) {
             return null;
         }
+    }
+
+    @SuppressLint("MissingPermission")
+    private void requestCurrentLocation(
+            LocationManager locationManager,
+            String provider,
+            boolean allowGpsRetry
+    ) {
+        if (currentLocationCancellation != null) {
+            currentLocationCancellation.cancel();
+        }
+        currentLocationCancellation = new CancellationSignal();
+
+        LocationManagerCompat.getCurrentLocation(
+                locationManager,
+                provider,
+                currentLocationCancellation,
+                ContextCompat.getMainExecutor(this),
+                location -> {
+                    if (location != null) {
+                        resolveAddressFromLocation(location);
+                        return;
+                    }
+
+                    boolean hasFine = ContextCompat.checkSelfPermission(
+                            this,
+                            Manifest.permission.ACCESS_FINE_LOCATION
+                    ) == PackageManager.PERMISSION_GRANTED;
+                    if (allowGpsRetry
+                            && hasFine
+                            && !LocationManager.GPS_PROVIDER.equals(provider)
+                            && locationManager.getProviders(true).contains(LocationManager.GPS_PROVIDER)) {
+                        requestCurrentLocation(locationManager, LocationManager.GPS_PROVIDER, false);
+                        return;
+                    }
+
+                    Location fallback = getMostRecentLastKnownLocation(locationManager);
+                    if (fallback != null) {
+                        resolveAddressFromLocation(fallback);
+                        return;
+                    }
+
+                    setPickButtonLoading(false);
+                    Toast.makeText(
+                            this,
+                            R.string.account_details_location_unavailable,
+                            Toast.LENGTH_SHORT
+                    ).show();
+                }
+        );
     }
 
     private void resolveAddressFromLocation(Location location) {
