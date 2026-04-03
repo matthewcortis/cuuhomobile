@@ -256,7 +256,7 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
-                android:layout_height="146dp"
+                android:layout_height="206dp"
                 android:layout_marginTop="14dp"
                 android:clipToOutline="true"
                 app:cardBackgroundColor="@color/white"
@@ -273,8 +273,7 @@
                         android:id="@+id/account_details_map_view"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        app:trackasia_renderTextureMode="true"
-                        app:trackasia_renderTextureTranslucentSurface="true" />
+                        app:trackasia_renderTextureMode="true" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_pick_precise_address_map"

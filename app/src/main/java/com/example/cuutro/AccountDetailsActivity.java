@@ -14,8 +14,8 @@ import com.trackasia.android.maps.Style;
 public class AccountDetailsActivity extends AppCompatActivity {
 
     private static final String MAP_VIEW_STATE_KEY = "account_map_view_state";
-    private static final LatLng PUNE = new LatLng(18.5204, 73.8567);
-    private static final double DEFAULT_ZOOM = 13.2;
+    private static final LatLng HANOI = new LatLng(21.0285, 105.8542);
+    private static final double DEFAULT_ZOOM = 12.8;
 
     private MapView mapView;
 
@@ -35,7 +35,7 @@ public class AccountDetailsActivity extends AppCompatActivity {
             mapView.onCreate(mapViewBundle);
             mapView.getMapAsync(map -> map.setStyle(
                     new Style.Builder().fromUri(getString(R.string.trackasia_style_url)),
-                    style -> map.moveCamera(CameraUpdateFactory.newLatLngZoom(PUNE, DEFAULT_ZOOM))
+                    style -> map.moveCamera(CameraUpdateFactory.newLatLngZoom(HANOI, DEFAULT_ZOOM))
             ));
         }
 
