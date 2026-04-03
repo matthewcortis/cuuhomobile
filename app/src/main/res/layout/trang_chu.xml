@@ -17,7 +17,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@drawable/bg_bottom_nav"
+        android:clipToOutline="true"
         android:elevation="8dp"
+        android:outlineProvider="background"
         android:orientation="vertical"
         android:paddingTop="4dp"
         android:paddingBottom="8dp">
