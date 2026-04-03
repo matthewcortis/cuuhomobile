@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/profile_background">
+
+    <LinearLayout
+        android:id="@+id/layout_account_header"
+        android:layout_width="match_parent"
+        android:layout_height="88dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="18dp"
+        android:paddingTop="12dp"
+        android:paddingEnd="20dp">
+
+        <ImageView
+            android:id="@+id/btn_account_details_back"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:contentDescription="@string/account_details_back"
+            android:focusable="true"
+            android:padding="2dp"
+            android:src="@drawable/ic_account_back"
+            app:tint="@color/profile_title" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/account_details_title"
+            android:textColor="@color/profile_title"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_account_actions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="26dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_account_cancel"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:text="@string/account_details_cancel"
+            android:textAllCaps="false"
+            android:textColor="@color/account_details_cancel_text"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:cornerRadius="14dp"
+            app:strokeColor="@color/account_details_cancel_stroke"
+            app:strokeWidth="1dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_account_save"
+            style="@style/Widget.Material3.Button"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="14dp"
+            android:layout_weight="1"
+            android:text="@string/account_details_save"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:backgroundTint="@color/color_primary"
+            app:cornerRadius="14dp" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/layout_account_header"
+        android:layout_above="@id/layout_account_actions"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingTop="26dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="24dp">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/account_details_name_label"
+                android:textColor="@color/profile_item_text"
+                android:textSize="16sp" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="10dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="14dp"
+                app:cardElevation="0dp"
+                app:strokeColor="@color/signup_input_stroke"
+                app:strokeWidth="1dp">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp"
+                    android:text="@string/account_details_name_value"
+                    android:textColor="@color/profile_item_text"
+                    android:textSize="15sp" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/account_details_email_label"
+                android:textColor="@color/profile_item_text"
+                android:textSize="16sp" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="10dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="14dp"
+                app:cardElevation="0dp"
+                app:strokeColor="@color/signup_input_stroke"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/account_details_email_value"
+                        android:textColor="@color/profile_item_text"
+                        android:textSize="15sp" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/account_details_email_verify"
+                        android:textColor="@color/color_primary"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/account_details_mobile_label"
+                android:textColor="@color/profile_item_text"
+                android:textSize="16sp" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="10dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="14dp"
+                app:cardElevation="0dp"
+                app:strokeColor="@color/signup_input_stroke"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="12dp">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/account_details_mobile_value"
+                        android:textColor="@color/profile_item_text"
+                        android:textSize="15sp" />
+
+                    <FrameLayout
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:background="@drawable/bg_account_verified_circle">
+
+                        <ImageView
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:layout_gravity="center"
+                            android:contentDescription="@string/account_details_mobile_verified"
+                            android:src="@drawable/ic_account_check"
+                            app:tint="@color/white" />
+                    </FrameLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/account_details_address_label"
+                android:textColor="@color/profile_item_text"
+                android:textSize="16sp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/account_details_address_input_layout"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="10dp"
+                android:hint="@string/account_details_address_hint"
+                app:boxBackgroundColor="@color/white"
+                app:boxCornerRadiusBottomEnd="14dp"
+                app:boxCornerRadiusBottomStart="14dp"
+                app:boxCornerRadiusTopEnd="14dp"
+                app:boxCornerRadiusTopStart="14dp"
+                app:boxStrokeColor="@color/signup_input_stroke"
+                app:boxStrokeWidth="1dp"
+                app:boxStrokeWidthFocused="1dp"
+                app:startIconDrawable="@drawable/ic_location_pin"
+                app:startIconTint="@color/color_primary">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_account_details_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="textPostalAddress"
+                    android:maxLines="1"
+                    android:textColor="@color/profile_item_text"
+                    android:textSize="15sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="146dp"
+                android:layout_marginTop="14dp"
+                android:clipToOutline="true"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="6dp"
+                app:cardElevation="0dp"
+                app:strokeColor="@color/signup_input_stroke"
+                app:strokeWidth="1dp">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.trackasia.android.maps.MapView
+                        android:id="@+id/account_details_map_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:trackasia_renderTextureMode="true"
+                        app:trackasia_renderTextureTranslucentSurface="true" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_pick_precise_address_map"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:layout_gravity="bottom|end"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:minWidth="0dp"
+                        android:text="@string/account_details_pick_precise_location"
+                        android:textAllCaps="false"
+                        android:textColor="@color/color_primary"
+                        android:textSize="13sp"
+                        app:backgroundTint="@color/white"
+                        app:cornerRadius="10dp"
+                        app:icon="@drawable/ic_location_pin"
+                        app:iconGravity="textStart"
+                        app:iconPadding="6dp"
+                        app:iconSize="16dp"
+                        app:iconTint="@color/color_primary"
+                        app:strokeColor="@color/signup_input_stroke"
+                        app:strokeWidth="1dp" />
+                </FrameLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

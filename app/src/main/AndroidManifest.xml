@@ -29,6 +29,9 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
+            android:name=".AccountDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".HomeActivity"
             android:exported="false" />
     </application>
