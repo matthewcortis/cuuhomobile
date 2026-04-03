@@ -24,6 +24,7 @@
     <string name="nav_community">Community</string>
     <string name="nav_profile">Profile</string>
     <string name="home_map_badge">TrackAsia Map - Việt Nam</string>
+    <string name="home_sos_label">SOS</string>
     <string name="trackasia_api_key">194ebf5c1760118356779607733f5f2b75</string>
     <string name="trackasia_style_url">https://maps.track-asia.com/styles/v2/streets.json?key=194ebf5c1760118356779607733f5f2b75</string>
 </resources>
