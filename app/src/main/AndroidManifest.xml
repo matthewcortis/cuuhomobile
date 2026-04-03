@@ -29,7 +29,7 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".trang_chu"
+            android:name=".HomeActivity"
             android:exported="false" />
     </application>
 

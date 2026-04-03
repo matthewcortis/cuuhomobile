@@ -13,7 +13,7 @@ import com.example.cuutro.ui.home.ProfileFragment;
 import com.example.cuutro.ui.home.SosFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class trang_chu extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity {
 
     private static final String TAG_HOME = "tab_home";
     private static final String TAG_SOS = "tab_sos";
