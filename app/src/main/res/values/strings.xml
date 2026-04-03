@@ -43,6 +43,12 @@
     <string name="account_details_address_label">Địa chỉ</string>
     <string name="account_details_address_hint">Nhập địa chỉ thủ công</string>
     <string name="account_details_pick_precise_location">Chọn chính xác</string>
+    <string name="account_details_pick_location_loading">Đang lấy địa chỉ...</string>
+    <string name="account_details_map_not_ready">Bản đồ chưa sẵn sàng</string>
+    <string name="account_details_location_permission_denied">Bạn chưa cấp quyền vị trí</string>
+    <string name="account_details_location_unavailable">Không lấy được vị trí hiện tại</string>
+    <string name="account_details_location_disabled">Hãy bật GPS/Vị trí để tiếp tục</string>
+    <string name="account_details_lat_lng_fallback">%1$.6f, %2$.6f</string>
     <string name="account_details_cancel">Huỷ </string>
     <string name="account_details_save">Lưu </string>
     <string name="home_sos_label">SOS</string>
