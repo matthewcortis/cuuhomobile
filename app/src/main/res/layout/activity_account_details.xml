@@ -96,33 +96,75 @@
             android:paddingEnd="20dp"
             android:paddingBottom="24dp">
 
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/account_details_name_label"
-                android:textColor="@color/profile_item_text"
-                android:textSize="16sp" />
-
             <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:layout_marginTop="10dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="14dp"
+                android:id="@+id/btn_account_avatar"
+                android:layout_width="92dp"
+                android:layout_height="92dp"
+                android:layout_gravity="center_horizontal"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                app:cardBackgroundColor="@color/account_avatar_bg"
+                app:cardCornerRadius="46dp"
                 app:cardElevation="0dp"
                 app:strokeColor="@color/signup_input_stroke"
                 app:strokeWidth="1dp">
 
-                <com.google.android.material.textview.MaterialTextView
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_account_avatar"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:paddingStart="14dp"
-                    android:paddingEnd="14dp"
+                    android:contentDescription="@string/account_details_avatar_content_description"
+                    android:padding="22dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_nav_profile"
+                    app:tint="@color/color_primary" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:text="@string/account_details_avatar_hint"
+                android:textColor="@color/color_primary"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/account_details_name_label"
+                android:textColor="@color/profile_item_text"
+                android:textSize="16sp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/account_details_name_input_layout"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="10dp"
+                android:hint="@string/account_details_name_hint"
+                app:boxBackgroundColor="@color/white"
+                app:boxCornerRadiusBottomEnd="14dp"
+                app:boxCornerRadiusBottomStart="14dp"
+                app:boxCornerRadiusTopEnd="14dp"
+                app:boxCornerRadiusTopStart="14dp"
+                app:boxStrokeColor="@color/signup_input_stroke"
+                app:boxStrokeWidth="1dp"
+                app:boxStrokeWidthFocused="1dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_account_details_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="textPersonName"
+                    android:maxLines="1"
                     android:text="@string/account_details_name_value"
                     android:textColor="@color/profile_item_text"
                     android:textSize="15sp" />
-            </com.google.android.material.card.MaterialCardView>
+            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
@@ -132,41 +174,32 @@
                 android:textColor="@color/profile_item_text"
                 android:textSize="16sp" />
 
-            <com.google.android.material.card.MaterialCardView
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/account_details_email_input_layout"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:layout_marginTop="10dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="14dp"
-                app:cardElevation="0dp"
-                app:strokeColor="@color/signup_input_stroke"
-                app:strokeWidth="1dp">
+                android:hint="@string/account_details_email_hint"
+                app:boxBackgroundColor="@color/white"
+                app:boxCornerRadiusBottomEnd="14dp"
+                app:boxCornerRadiusBottomStart="14dp"
+                app:boxCornerRadiusTopEnd="14dp"
+                app:boxCornerRadiusTopStart="14dp"
+                app:boxStrokeColor="@color/signup_input_stroke"
+                app:boxStrokeWidth="1dp"
+                app:boxStrokeWidthFocused="1dp">
 
-                <LinearLayout
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_account_details_email"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingStart="14dp"
-                    android:paddingEnd="14dp">
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/account_details_email_value"
-                        android:textColor="@color/profile_item_text"
-                        android:textSize="15sp" />
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/account_details_email_verify"
-                        android:textColor="@color/color_primary"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1"
+                    android:text="@string/account_details_email_value"
+                    android:textColor="@color/profile_item_text"
+                    android:textSize="15sp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
@@ -176,47 +209,34 @@
                 android:textColor="@color/profile_item_text"
                 android:textSize="16sp" />
 
-            <com.google.android.material.card.MaterialCardView
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/account_details_phone_input_layout"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:layout_marginTop="10dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="14dp"
-                app:cardElevation="0dp"
-                app:strokeColor="@color/signup_input_stroke"
-                app:strokeWidth="1dp">
+                android:hint="@string/account_details_mobile_hint"
+                app:boxBackgroundColor="@color/white"
+                app:boxCornerRadiusBottomEnd="14dp"
+                app:boxCornerRadiusBottomStart="14dp"
+                app:boxCornerRadiusTopEnd="14dp"
+                app:boxCornerRadiusTopStart="14dp"
+                app:boxStrokeColor="@color/signup_input_stroke"
+                app:boxStrokeWidth="1dp"
+                app:boxStrokeWidthFocused="1dp">
 
-                <LinearLayout
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_account_details_phone"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingStart="14dp"
-                    android:paddingEnd="12dp">
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/account_details_mobile_value"
-                        android:textColor="@color/profile_item_text"
-                        android:textSize="15sp" />
-
-                    <FrameLayout
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:background="@drawable/bg_account_verified_circle">
-
-                        <ImageView
-                            android:layout_width="14dp"
-                            android:layout_height="14dp"
-                            android:layout_gravity="center"
-                            android:contentDescription="@string/account_details_mobile_verified"
-                            android:src="@drawable/ic_account_check"
-                            app:tint="@color/white" />
-                    </FrameLayout>
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
+                    android:digits="0123456789"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:maxLines="1"
+                    android:text="@string/account_details_mobile_value"
+                    android:textColor="@color/profile_item_text"
+                    android:textSize="15sp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"

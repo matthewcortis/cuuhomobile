@@ -21,6 +21,7 @@
     <color name="profile_item_text">#323842</color>
     <color name="profile_item_arrow">#5B616C</color>
     <color name="profile_logout_stroke">#F29A9A</color>
+    <color name="account_avatar_bg">#FFF5F5</color>
     <color name="account_details_cancel_text">#9A9A9A</color>
     <color name="account_details_cancel_stroke">#BEBEBE</color>
 </resources>
