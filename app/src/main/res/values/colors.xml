@@ -16,4 +16,9 @@
     <color name="location_subtitle">#746E6B</color>
     <color name="location_skip_text">#4F4946</color>
     <color name="bottom_nav_unselected">#A4A4A4</color>
+    <color name="profile_background">#F7F7F7</color>
+    <color name="profile_title">#2E323A</color>
+    <color name="profile_item_text">#323842</color>
+    <color name="profile_item_arrow">#5B616C</color>
+    <color name="profile_logout_stroke">#F29A9A</color>
 </resources>

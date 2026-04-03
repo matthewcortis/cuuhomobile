@@ -1,13 +1,8 @@
 package com.example.cuutro;
 
 import android.os.Bundle;
-import android.view.View;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -27,26 +22,13 @@ public class HomeActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
     private Fragment activeFragment;
-    private View bottomNavContainer;
-    private int bottomNavPaddingLeft;
-    private int bottomNavPaddingTop;
-    private int bottomNavPaddingRight;
-    private int bottomNavPaddingBottom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.trang_chu);
 
         bottomNavigationView = findViewById(R.id.bottom_nav);
-        bottomNavContainer = findViewById(R.id.layout_bottom_nav);
-        bottomNavPaddingLeft = bottomNavContainer.getPaddingLeft();
-        bottomNavPaddingTop = bottomNavContainer.getPaddingTop();
-        bottomNavPaddingRight = bottomNavContainer.getPaddingRight();
-        bottomNavPaddingBottom = bottomNavContainer.getPaddingBottom();
-        applyWindowInsets();
-
         restoreActiveFragment();
 
         bottomNavigationView.setOnItemSelectedListener(item -> {
@@ -59,20 +41,6 @@ public class HomeActivity extends AppCompatActivity {
         } else if (activeFragment == null) {
             switchToTab(bottomNavigationView.getSelectedItemId());
         }
-    }
-
-    private void applyWindowInsets() {
-        View root = findViewById(R.id.trang_chu_root);
-        ViewCompat.setOnApplyWindowInsetsListener(root, (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            bottomNavContainer.setPadding(
-                    bottomNavPaddingLeft + systemBars.left,
-                    bottomNavPaddingTop,
-                    bottomNavPaddingRight + systemBars.right,
-                    bottomNavPaddingBottom + systemBars.bottom
-            );
-            return insets;
-        });
     }
 
     private void switchToTab(int itemId) {
