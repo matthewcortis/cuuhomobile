@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Cứu hộ</string>
+    <string name="splash_title">Cứu hộ</string>
+    <string name="splash_subtitle">Tiếp cận nhanh chóng</string>
+    <string name="splash_logo_content_description">Emergency response logo</string>
+    <string name="signup_title">Let\'s sign you up.</string>
+    <string name="signup_subtitle">Chào mừng.</string>
+    <string name="signup_label_full_name">Full Name</string>
+    <string name="signup_hint_full_name">Your name</string>
+    <string name="signup_label_email">Email</string>
+    <string name="signup_hint_email">Your email</string>
+    <string name="signup_label_password">Password</string>
+    <string name="signup_hint_password">Enter password</string>
+    <string name="signup_cta">Sign up</string>
+    <string name="signup_already_member">Already a member?</string>
+    <string name="signup_log_in">Log in</string>
+    <string name="location_title">Track yourself.</string>
+    <string name="location_subtitle">Please allow location permission.</string>
+    <string name="location_allow">Chấp nhận</string>
+    <string name="location_skip">Bỏ qua và tiếp tục</string>
+    <string name="location_icon_content_description">Location permission icon</string>
+    <string name="nav_home">Trang chủ</string>
+    <string name="nav_sos">SOS</string>
+    <string name="nav_community">Community</string>
+    <string name="nav_profile">Profile</string>
+    <string name="home_map_badge">TrackAsia Map - Việt Nam</string>
+    <string name="trackasia_api_key">194ebf5c1760118356779607733f5f2b75</string>
+    <string name="trackasia_style_url">https://maps.track-asia.com/styles/v2/streets.json?key=194ebf5c1760118356779607733f5f2b75</string>
+</resources>

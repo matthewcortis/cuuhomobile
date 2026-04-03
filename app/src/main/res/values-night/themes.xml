@@ -1,0 +1,8 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Cuutro" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Global typography: apply Roboto to app + Material components. -->
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="fontFamily">@font/roboto</item>
+    </style>
+</resources>

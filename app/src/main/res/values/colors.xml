@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="splash_background">#F7F7F7</color>
+    <color name="splash_primary">#E02323</color>
+    <color name="color_primary">#E02323</color>
+    <color name="signup_background">#F7F7F7</color>
+    <color name="signup_text_primary">#3A3431</color>
+    <color name="signup_text_secondary">#7E7774</color>
+    <color name="signup_input_stroke">#D8D3D0</color>
+    <color name="signup_hint">#BBB6B3</color>
+    <color name="signup_icon_tint">#5E5855</color>
+    <color name="location_background">#F7F7F7</color>
+    <color name="location_icon_background">#F3E6E6</color>
+    <color name="location_subtitle">#746E6B</color>
+    <color name="location_skip_text">#4F4946</color>
+    <color name="bottom_nav_unselected">#A4A4A4</color>
+</resources>
