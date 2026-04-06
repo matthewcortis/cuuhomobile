@@ -24,4 +24,12 @@
     <color name="account_avatar_bg">#FFF5F5</color>
     <color name="account_details_cancel_text">#9A9A9A</color>
     <color name="account_details_cancel_stroke">#BEBEBE</color>
+    <color name="report_background">#EFEFF0</color>
+    <color name="report_text_primary">#2F2F2F</color>
+    <color name="report_divider">#DFDFDF</color>
+    <color name="report_action_red">#E52323</color>
+    <color name="report_icon_inactive">#C8CED5</color>
+    <color name="report_label_inactive">#676C74</color>
+    <color name="report_location_text">#5F6166</color>
+    <color name="report_hint">#A9A9AF</color>
 </resources>

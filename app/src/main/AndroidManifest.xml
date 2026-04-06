@@ -18,6 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Cuutro">
         <activity
+            android:name=".ReportActivity"
+            android:exported="false" />
+        <activity
             android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
@@ -26,7 +29,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".MainActivity"
             android:exported="false" />
