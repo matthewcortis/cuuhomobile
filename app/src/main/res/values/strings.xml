@@ -87,12 +87,10 @@
     <string name="report_assault">Assault</string>
     <string name="report_other">Other</string>
     <string name="report_selected_type">Đã chọn: %1$s</string>
-    <string name="report_select_location_title">Select Location</string>
-    <string name="report_search_address">Search Address</string>
-    <string name="report_use_precise_location">Vị trí chính xác</string>
-    <string name="report_pick_on_track_map">Chọn trên TrackMap</string>
-    <string name="report_track_my_location">Track my location</string>
-    <string name="report_confirm_location">Confirm Location</string>
+    <string name="report_select_location_title">Chọn địa chỉ</string>
+    <string name="report_search_address">Tìm kiếm</string>
+    <string name="report_track_my_location">Vị trí chính xác</string>
+    <string name="report_confirm_location">Xác nhận địa chỉ</string>
     <string name="report_address_line_hint">Khu vực</string>
     <string name="report_city_hint">Thành phố</string>
     <string name="report_postal_hint">Mã bưu chính</string>
