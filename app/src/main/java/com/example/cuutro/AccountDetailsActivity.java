@@ -3,10 +3,7 @@ package com.example.cuutro;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
-import android.location.Address;
-import android.location.Geocoder;
 import android.location.Location;
-import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
@@ -22,22 +19,18 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.location.Priority;
-import com.google.android.gms.tasks.CancellationTokenSource;
+import com.example.cuutro.location.DeviceLocationProvider;
+import com.example.cuutro.location.LocationAddressResolver;
+import com.example.cuutro.location.MapGestureCoordinator;
+import com.example.cuutro.location.TrackAsiaMapController;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
-import com.trackasia.android.TrackAsia;
 import com.trackasia.android.camera.CameraUpdateFactory;
 import com.trackasia.android.geometry.LatLng;
 import com.trackasia.android.maps.MapView;
-import com.trackasia.android.maps.Style;
 import com.trackasia.android.maps.TrackAsiaMap;
 
-import java.io.IOException;
-import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -52,6 +45,7 @@ public class AccountDetailsActivity extends AppCompatActivity {
     private static final Pattern PHONE_PATTERN = Pattern.compile("^\\d{10}$");
 
     private MapView mapView;
+    private TrackAsiaMapController mapController;
     private TrackAsiaMap trackAsiaMap;
     private AppCompatImageView avatarImageView;
     private TextInputLayout nameInputLayout;
@@ -64,10 +58,10 @@ public class AccountDetailsActivity extends AppCompatActivity {
     private MaterialButton saveButton;
     private MaterialButton pickPreciseAddressButton;
     private final ExecutorService geocodeExecutor = Executors.newSingleThreadExecutor();
-    private FusedLocationProviderClient fusedLocationClient;
+    private DeviceLocationProvider locationProvider;
+    private LocationAddressResolver addressResolver;
     private ActivityResultLauncher<String> pickAvatarLauncher;
     private ActivityResultLauncher<String[]> locationPermissionLauncher;
-    private CancellationTokenSource currentLocationTokenSource;
     private Uri selectedAvatarUri;
     private boolean isFormattingPhoneInput;
     private LatLng currentUserLatLng;
@@ -77,8 +71,8 @@ public class AccountDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_details);
 
-        TrackAsia.getInstance(getApplicationContext());
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        locationProvider = new DeviceLocationProvider(this);
+        addressResolver = new LocationAddressResolver(this, new Locale("vi", "VN"));
         setupAvatarPickerLauncher();
         setupLocationPermissionLauncher();
 
@@ -94,22 +88,21 @@ public class AccountDetailsActivity extends AppCompatActivity {
         saveButton = findViewById(R.id.btn_account_save);
         pickPreciseAddressButton = findViewById(R.id.btn_pick_precise_address_map);
         if (mapView != null) {
+            MapGestureCoordinator.install(mapView);
             Bundle mapViewBundle = null;
             if (savedInstanceState != null) {
                 mapViewBundle = savedInstanceState.getBundle(MAP_VIEW_STATE_KEY);
             }
-            mapView.onCreate(mapViewBundle);
-            mapView.getMapAsync(map -> {
-                trackAsiaMap = map;
-                LatLng initialTarget = currentUserLatLng != null ? currentUserLatLng : HANOI;
-                double initialZoom = currentUserLatLng != null ? 15.5 : DEFAULT_ZOOM;
-                map.setStyle(
-                        new Style.Builder().fromUri(getString(R.string.trackasia_style_url)),
-                        style -> map.moveCamera(
-                                CameraUpdateFactory.newLatLngZoom(initialTarget, initialZoom)
-                        )
-                );
-            });
+            mapController = new TrackAsiaMapController(mapView);
+            mapController.onCreate(mapViewBundle);
+            LatLng initialTarget = currentUserLatLng != null ? currentUserLatLng : HANOI;
+            double initialZoom = currentUserLatLng != null ? 15.5 : DEFAULT_ZOOM;
+            mapController.loadStyle(
+                    getString(R.string.trackasia_style_url),
+                    initialTarget,
+                    initialZoom,
+                    map -> trackAsiaMap = map
+            );
         }
 
         restoreAvatarState(savedInstanceState);
@@ -147,31 +140,31 @@ public class AccountDetailsActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        if (mapView != null) {
-            mapView.onStart();
+        if (mapController != null) {
+            mapController.onStart();
         }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if (mapView != null) {
-            mapView.onResume();
+        if (mapController != null) {
+            mapController.onResume();
         }
     }
 
     @Override
     protected void onPause() {
-        if (mapView != null) {
-            mapView.onPause();
+        if (mapController != null) {
+            mapController.onPause();
         }
         super.onPause();
     }
 
     @Override
     protected void onStop() {
-        if (mapView != null) {
-            mapView.onStop();
+        if (mapController != null) {
+            mapController.onStop();
         }
         super.onStop();
     }
@@ -179,22 +172,22 @@ public class AccountDetailsActivity extends AppCompatActivity {
     @Override
     public void onLowMemory() {
         super.onLowMemory();
-        if (mapView != null) {
-            mapView.onLowMemory();
+        if (mapController != null) {
+            mapController.onLowMemory();
         }
     }
 
     @Override
     protected void onDestroy() {
-        if (currentLocationTokenSource != null) {
-            currentLocationTokenSource.cancel();
-            currentLocationTokenSource = null;
+        if (locationProvider != null) {
+            locationProvider.cancel();
         }
         geocodeExecutor.shutdownNow();
-        if (mapView != null) {
-            mapView.onDestroy();
-            mapView = null;
+        if (mapController != null) {
+            mapController.onDestroy();
+            mapController = null;
         }
+        mapView = null;
         trackAsiaMap = null;
         super.onDestroy();
     }
@@ -205,13 +198,8 @@ public class AccountDetailsActivity extends AppCompatActivity {
         if (selectedAvatarUri != null) {
             outState.putString(AVATAR_URI_KEY, selectedAvatarUri.toString());
         }
-        if (mapView != null) {
-            Bundle mapViewBundle = outState.getBundle(MAP_VIEW_STATE_KEY);
-            if (mapViewBundle == null) {
-                mapViewBundle = new Bundle();
-                outState.putBundle(MAP_VIEW_STATE_KEY, mapViewBundle);
-            }
-            mapView.onSaveInstanceState(mapViewBundle);
+        if (mapController != null) {
+            mapController.onSaveInstanceState(outState, MAP_VIEW_STATE_KEY);
         }
     }
 
@@ -385,78 +373,32 @@ public class AccountDetailsActivity extends AppCompatActivity {
 
     @SuppressLint("MissingPermission")
     private void requestCurrentLocationAndFillAddress() {
-        if (!isLocationServiceEnabled()) {
-            Toast.makeText(this, R.string.account_details_location_disabled, Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (fusedLocationClient == null) {
-            Toast.makeText(this, R.string.account_details_location_unavailable, Toast.LENGTH_SHORT).show();
-            return;
-        }
-
         setPickButtonLoading(true);
-        requestCurrentLocationViaFused();
-    }
-
-    private boolean isLocationServiceEnabled() {
-        LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        if (locationManager == null) {
-            return false;
-        }
-        try {
-            return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
-                    || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-        } catch (Exception ignored) {
-            return false;
-        }
-    }
-
-    @SuppressLint("MissingPermission")
-    private void requestCurrentLocationViaFused() {
-        if (fusedLocationClient == null) {
-            onLocationRequestFailed();
+        if (locationProvider == null) {
+            onLocationRequestFailed(DeviceLocationProvider.Error.LOCATION_UNAVAILABLE);
             return;
         }
-        if (currentLocationTokenSource != null) {
-            currentLocationTokenSource.cancel();
-        }
-        currentLocationTokenSource = new CancellationTokenSource();
+        locationProvider.requestCurrentLocation(new DeviceLocationProvider.Callback() {
+            @Override
+            public void onLocation(@androidx.annotation.NonNull Location location) {
+                resolveAddressFromLocation(location);
+            }
 
-        fusedLocationClient
-                .getCurrentLocation(Priority.PRIORITY_HIGH_ACCURACY, currentLocationTokenSource.getToken())
-                .addOnSuccessListener(location -> {
-                    if (location != null) {
-                        resolveAddressFromLocation(location);
-                        return;
-                    }
-                    requestLastKnownLocationViaFused();
-                })
-                .addOnFailureListener(e -> requestLastKnownLocationViaFused());
+            @Override
+            public void onError(@androidx.annotation.NonNull DeviceLocationProvider.Error error) {
+                onLocationRequestFailed(error);
+            }
+        });
     }
 
-    @SuppressLint("MissingPermission")
-    private void requestLastKnownLocationViaFused() {
-        if (fusedLocationClient == null) {
-            onLocationRequestFailed();
-            return;
-        }
-        fusedLocationClient
-                .getLastLocation()
-                .addOnSuccessListener(location -> {
-                    if (location != null) {
-                        resolveAddressFromLocation(location);
-                    } else {
-                        onLocationRequestFailed();
-                    }
-                })
-                .addOnFailureListener(e -> onLocationRequestFailed());
-    }
-
-    private void onLocationRequestFailed() {
+    private void onLocationRequestFailed(DeviceLocationProvider.Error error) {
         setPickButtonLoading(false);
+        int messageRes = error == DeviceLocationProvider.Error.LOCATION_DISABLED
+                ? R.string.account_details_location_disabled
+                : R.string.account_details_location_unavailable;
         Toast.makeText(
                 this,
-                R.string.account_details_location_unavailable,
+                messageRes,
                 Toast.LENGTH_SHORT
         ).show();
     }
@@ -469,7 +411,14 @@ public class AccountDetailsActivity extends AppCompatActivity {
         }
 
         geocodeExecutor.execute(() -> {
-            String resolvedAddress = reverseGeocode(target);
+            String fallback = getString(
+                    R.string.account_details_lat_lng_fallback,
+                    target.getLatitude(),
+                    target.getLongitude()
+            );
+            String resolvedAddress = addressResolver != null
+                    ? addressResolver.reverseGeocode(target, fallback).getFullAddress()
+                    : fallback;
             runOnUiThread(() -> {
                 if (isFinishing() || isDestroyed()) {
                     return;
@@ -480,54 +429,12 @@ public class AccountDetailsActivity extends AppCompatActivity {
                     return;
                 }
 
-                String textToShow = resolvedAddress;
-                if (textToShow == null || textToShow.isBlank()) {
-                    textToShow = getString(
-                            R.string.account_details_lat_lng_fallback,
-                            target.getLatitude(),
-                            target.getLongitude()
-                    );
-                }
-                addressEditText.setText(textToShow);
+                addressEditText.setText(resolvedAddress);
                 if (addressEditText.getText() != null) {
                     addressEditText.setSelection(addressEditText.getText().length());
                 }
             });
         });
-    }
-
-    @SuppressWarnings("deprecation")
-    private String reverseGeocode(LatLng target) {
-        if (!Geocoder.isPresent()) {
-            return null;
-        }
-
-        Geocoder geocoder = new Geocoder(this, new Locale("vi", "VN"));
-        try {
-            List<Address> addresses = geocoder.getFromLocation(
-                    target.getLatitude(),
-                    target.getLongitude(),
-                    1
-            );
-            if (addresses == null || addresses.isEmpty()) {
-                return null;
-            }
-
-            Address address = addresses.get(0);
-            if (address.getMaxAddressLineIndex() >= 0) {
-                StringBuilder lineBuilder = new StringBuilder();
-                for (int i = 0; i <= address.getMaxAddressLineIndex(); i++) {
-                    if (i > 0) {
-                        lineBuilder.append(", ");
-                    }
-                    lineBuilder.append(address.getAddressLine(i));
-                }
-                return lineBuilder.toString();
-            }
-            return address.getFeatureName();
-        } catch (IOException | IllegalArgumentException ignored) {
-            return null;
-        }
     }
 
     private void setPickButtonLoading(boolean isLoading) {

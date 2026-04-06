@@ -78,53 +78,9 @@
             android:textSize="16sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnUsePreciseLocation"
-            style="@style/Widget.Material3.Button.OutlinedButton"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_weight="1"
-            android:text="@string/report_use_precise_location"
-            android:textAllCaps="false"
-            android:textColor="@color/report_action_red"
-            android:textSize="13sp"
-            app:cornerRadius="10dp"
-            app:icon="@drawable/ic_location_pin"
-            app:iconGravity="textStart"
-            app:iconPadding="6dp"
-            app:iconSize="16dp"
-            app:iconTint="@color/report_action_red"
-            app:strokeColor="@color/report_action_red"
-            app:strokeWidth="1dp" />
-
-        <Space
-            android:layout_width="10dp"
-            android:layout_height="1dp" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnPickFromTrackMap"
-            style="@style/Widget.Material3.Button.OutlinedButton"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_weight="1"
-            android:text="@string/report_pick_on_track_map"
-            android:textAllCaps="false"
-            android:textColor="@color/report_text_primary"
-            android:textSize="13sp"
-            app:cornerRadius="10dp"
-            app:strokeColor="@color/signup_input_stroke"
-            app:strokeWidth="1dp" />
-    </LinearLayout>
-
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="170dp"
+        android:layout_height="250dp"
         android:layout_marginTop="10dp"
         android:clipToOutline="true"
         app:cardBackgroundColor="@color/white"

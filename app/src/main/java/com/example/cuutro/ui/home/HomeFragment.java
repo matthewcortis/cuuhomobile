@@ -13,12 +13,9 @@ import androidx.fragment.app.Fragment;
 
 import com.example.cuutro.R;
 import com.example.cuutro.ReportActivity;
-import com.trackasia.android.TrackAsia;
-import com.trackasia.android.camera.CameraUpdateFactory;
+import com.example.cuutro.location.TrackAsiaMapController;
 import com.trackasia.android.geometry.LatLng;
 import com.trackasia.android.maps.MapView;
-import com.trackasia.android.maps.Style;
-import com.trackasia.android.maps.TrackAsiaMap;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,12 +23,12 @@ import java.util.List;
 public class HomeFragment extends Fragment {
 
     private static final String MAP_VIEW_STATE_KEY = "home_map_view_state";
-     private static final LatLng HANOI = new LatLng(21.0285, 105.8542);
+    private static final LatLng HANOI = new LatLng(21.0285, 105.8542);
     private static final double DEFAULT_ZOOM_VIETNAM = 9.4;
     private static final long SOS_PULSE_DURATION_MS = 1800L;
 
     private MapView mapView;
-    private TrackAsiaMap trackAsiaMap;
+    private TrackAsiaMapController mapController;
     private final List<ObjectAnimator> sosPulseAnimators = new ArrayList<>();
 
     public HomeFragment() {
@@ -42,15 +39,24 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        TrackAsia.getInstance(requireContext().getApplicationContext());
-
         mapView = view.findViewById(R.id.home_map_view);
+        if (mapView != null) {
+            mapController = new TrackAsiaMapController(mapView);
+        }
+
         Bundle mapViewBundle = null;
         if (savedInstanceState != null) {
             mapViewBundle = savedInstanceState.getBundle(MAP_VIEW_STATE_KEY);
         }
-        mapView.onCreate(mapViewBundle);
-        mapView.getMapAsync(this::setupMap);
+        if (mapController != null) {
+            mapController.onCreate(mapViewBundle);
+            mapController.loadStyle(
+                    getString(R.string.trackasia_style_url),
+                    HANOI,
+                    DEFAULT_ZOOM_VIETNAM,
+                    null
+            );
+        }
 
         initSosPulse(view);
         setupSosAction(view);
@@ -59,31 +65,31 @@ public class HomeFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        if (mapView != null) {
-            mapView.onStart();
+        if (mapController != null) {
+            mapController.onStart();
         }
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        if (mapView != null) {
-            mapView.onResume();
+        if (mapController != null) {
+            mapController.onResume();
         }
     }
 
     @Override
     public void onPause() {
-        if (mapView != null) {
-            mapView.onPause();
+        if (mapController != null) {
+            mapController.onPause();
         }
         super.onPause();
     }
 
     @Override
     public void onStop() {
-        if (mapView != null) {
-            mapView.onStop();
+        if (mapController != null) {
+            mapController.onStop();
         }
         super.onStop();
     }
@@ -91,43 +97,28 @@ public class HomeFragment extends Fragment {
     @Override
     public void onLowMemory() {
         super.onLowMemory();
-        if (mapView != null) {
-            mapView.onLowMemory();
+        if (mapController != null) {
+            mapController.onLowMemory();
         }
     }
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        if (mapView != null) {
-            Bundle mapViewBundle = outState.getBundle(MAP_VIEW_STATE_KEY);
-            if (mapViewBundle == null) {
-                mapViewBundle = new Bundle();
-                outState.putBundle(MAP_VIEW_STATE_KEY, mapViewBundle);
-            }
-            mapView.onSaveInstanceState(mapViewBundle);
+        if (mapController != null) {
+            mapController.onSaveInstanceState(outState, MAP_VIEW_STATE_KEY);
         }
     }
 
     @Override
     public void onDestroyView() {
         stopSosPulse();
-        if (mapView != null) {
-            mapView.onDestroy();
-            mapView = null;
+        if (mapController != null) {
+            mapController.onDestroy();
+            mapController = null;
         }
-        trackAsiaMap = null;
+        mapView = null;
         super.onDestroyView();
-    }
-
-    private void setupMap(@NonNull TrackAsiaMap map) {
-        trackAsiaMap = map;
-        map.setStyle(
-                new Style.Builder().fromUri(getString(R.string.trackasia_style_url)),
-                style -> map.moveCamera(
-                        CameraUpdateFactory.newLatLngZoom(HANOI, DEFAULT_ZOOM_VIETNAM)
-                )
-        );
     }
 
     private void initSosPulse(@NonNull View root) {
