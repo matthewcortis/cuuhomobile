@@ -29,7 +29,7 @@
             android:contentDescription="@string/report_back"
             android:padding="8dp"
             android:src="@drawable/ic_account_back"
-            android:tint="@color/report_text_primary" />
+            app:tint="@color/report_text_primary" />
 
         <TextView
             android:id="@+id/tvHeaderTitle"
@@ -132,7 +132,7 @@
                     android:layout_height="22dp"
                     android:contentDescription="@string/report_location_icon"
                     android:src="@drawable/ic_location_pin"
-                    android:tint="@color/report_icon_inactive" />
+                    app:tint="@color/report_icon_inactive" />
 
                 <TextView
                     android:id="@+id/tvReportLocationValue"
@@ -204,7 +204,7 @@
                         android:layout_height="26dp"
                         android:contentDescription="@string/report_attach_camera"
                         android:src="@drawable/ic_report_camera"
-                        android:tint="@color/report_action_red" />
+                        app:tint="@color/report_action_red" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -240,7 +240,7 @@
                         android:layout_height="26dp"
                         android:contentDescription="@string/report_attach_video"
                         android:src="@drawable/ic_report_video"
-                        android:tint="@color/report_action_red" />
+                        app:tint="@color/report_action_red" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -276,7 +276,7 @@
                         android:layout_height="26dp"
                         android:contentDescription="@string/report_attach_voice"
                         android:src="@drawable/ic_report_mic"
-                        android:tint="@color/report_action_red" />
+                        app:tint="@color/report_action_red" />
 
                     <TextView
                         android:layout_width="wrap_content"

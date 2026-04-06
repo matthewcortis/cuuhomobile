@@ -63,16 +63,16 @@
     <string name="home_sos_label">SOS</string>
     <string name="trackasia_api_key">194ebf5c1760118356779607733f5f2b75</string>
     <string name="trackasia_style_url">https://maps.track-asia.com/styles/v2/streets.json?key=194ebf5c1760118356779607733f5f2b75</string>
-    <string name="report_title">Report Emergency</string>
+    <string name="report_title">Báo cáo sự cố</string>
     <string name="report_back">Quay lại</string>
-    <string name="report_select_emergency_type">Select Emergency type</string>
-    <string name="report_location">Location</string>
-    <string name="report_attach_proof">Attach proof</string>
-    <string name="report_specify_emergency">Specify emergency in brief</string>
+    <string name="report_select_emergency_type">Chọn loại sự cố</string>
+    <string name="report_location">Địa chỉ</string>
+    <string name="report_attach_proof">Đính kèm</string>
+    <string name="report_specify_emergency">Ghi chú</string>
     <string name="report_location_value">Kothrud, Pune, 411038</string>
-    <string name="report_change">Change</string>
-    <string name="report_submit">Submit Report</string>
-    <string name="report_brief_hint">Describe the situation...</string>
+    <string name="report_change">Thay đổi</string>
+    <string name="report_submit">Báo cáo</string>
+    <string name="report_brief_hint">Nội dung ghi chú ...</string>
     <string name="report_attach_camera">Click\nPictures</string>
     <string name="report_attach_video">Video\nRecording</string>
     <string name="report_attach_voice">Voice\nRecording</string>
