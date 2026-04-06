@@ -126,6 +126,19 @@
 
     <string name="community_screen_title">Bản tin </string>
     <string name="community_create_post">Tạo bài viết cộng đồng</string>
+    <string name="community_add_post_back">Back</string>
+    <string name="community_add_post_screen_title">Create Community Post</string>
+    <string name="community_add_post_upload_content_description">Upload photo or video</string>
+    <string name="community_add_post_upload_label">Upload Photo/ Video</string>
+    <string name="community_add_post_title_label">Title *</string>
+    <string name="community_add_post_title_value">✨ Free Meals Available for Those in Need</string>
+    <string name="community_add_post_description_label">Description *</string>
+    <string name="community_add_post_description_value">If you or someone you know needs a warm meal, our community kitchen at "GR3G+67F, Bharatkunj -2, Erandwane, Pune, Maharashtra 411004" is serving free lunch from 12 PM - 3 PM today.\n\nNo registration needed - just come by! Let\'s support each other.</string>
+    <string name="community_add_post_location_label">Location (optional)</string>
+    <string name="community_add_post_location_icon">Location</string>
+    <string name="community_add_post_location_value">Kothrud, Pune, 411038</string>
+    <string name="community_add_post_change">Change</string>
+    <string name="community_add_post_submit">Post</string>
     <string name="community_post_action">Tuỳ chọn bài viết</string>
     <string name="community_post_image">Ảnh bài viết cộng đồng</string>
     <string name="community_post_avatar">Ảnh đại diện tác giả</string>

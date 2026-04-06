@@ -1,5 +1,6 @@
 package com.example.cuutro.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -9,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.cuutro.AddNewCommunityActivity;
 import com.example.cuutro.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -78,7 +80,10 @@ public class CommunityFragment extends Fragment {
 
     private void setupCreatePostAction(@NonNull View root) {
         FloatingActionButton createPostButton = root.findViewById(R.id.fabCreateCommunityPost);
-        createPostButton.setOnClickListener(v -> addGeneratedPost());
+        createPostButton.setOnClickListener(v -> {
+            Intent intent = new Intent(requireContext(), AddNewCommunityActivity.class);
+            startActivity(intent);
+        });
     }
 
     private void addGeneratedPost() {

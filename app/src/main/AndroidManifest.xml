@@ -18,6 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Cuutro">
         <activity
+            android:name=".AddNewCommunityActivity"
+            android:exported="false" />
+        <activity
             android:name=".ReportActivity"
             android:exported="false" />
         <activity
