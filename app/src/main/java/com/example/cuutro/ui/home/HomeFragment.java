@@ -2,6 +2,7 @@ package com.example.cuutro.ui.home;
 
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
@@ -11,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.cuutro.R;
+import com.example.cuutro.ReportActivity;
 import com.trackasia.android.TrackAsia;
 import com.trackasia.android.camera.CameraUpdateFactory;
 import com.trackasia.android.geometry.LatLng;
@@ -51,6 +53,7 @@ public class HomeFragment extends Fragment {
         mapView.getMapAsync(this::setupMap);
 
         initSosPulse(view);
+        setupSosAction(view);
     }
 
     @Override
@@ -136,6 +139,16 @@ public class HomeFragment extends Fragment {
         stopSosPulse();
         startPulseAnimator(pulse1, 0L);
         startPulseAnimator(pulse2, SOS_PULSE_DURATION_MS / 2);
+    }
+
+    private void setupSosAction(@NonNull View root) {
+        View sosButton = root.findViewById(R.id.btn_home_sos);
+        if (sosButton == null) {
+            return;
+        }
+        sosButton.setOnClickListener(v ->
+                startActivity(new Intent(requireContext(), ReportActivity.class))
+        );
     }
 
     private void startPulseAnimator(@NonNull View pulseView, long startDelay) {
