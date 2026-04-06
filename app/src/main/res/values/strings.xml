@@ -107,8 +107,8 @@
     <string name="sos_reported_by_others">Hoàn thành</string>
     <string name="sos_delete_report">Delete report</string>
     <string name="sos_empty_reported_by_you">Bạn chưa tạo báo cáo nào</string>
-    <string name="sos_empty_reported_by_others">Chưa có báo cáo hoàn </string>
-    <string name="sos_deleted_toast">Đã xoá báo cáo</string>thành
+    <string name="sos_empty_reported_by_others">Chưa có báo cáo hoàn thành</string>
+    <string name="sos_deleted_toast">Đã xoá báo cáo</string>
     <string name="sos_sample_location_1">Kothrud, Pune, 411038</string>
     <string name="sos_sample_location_2">Bandra West, Mumbai, 400050</string>
     <string name="sos_sample_location_3">Sector 15, Noida, 201301</string>
@@ -123,4 +123,36 @@
     <string name="sos_sample_description_flood">Heavy rain has caused water to rise quickly near the residential lane. Residents on the ground floor are requesting evacuation support and immediate relief assistance.</string>
     <string name="sos_sample_description_medical">An elderly person has collapsed near the market area with signs of breathing difficulty. Bystanders are requesting an ambulance and first-aid response as soon as possible.</string>
     <string name="sos_sample_description_fire">A small warehouse caught fire and smoke is spreading to nearby houses. Local people have moved away and are waiting for firefighters to control the situation.</string>
+
+    <string name="community_screen_title">Community Posts</string>
+    <string name="community_create_post">Tạo bài viết cộng đồng</string>
+    <string name="community_post_action">Tuỳ chọn bài viết</string>
+    <string name="community_post_image">Ảnh bài viết cộng đồng</string>
+    <string name="community_post_avatar">Ảnh đại diện tác giả</string>
+    <string name="community_post_verified">Tài khoản xác minh</string>
+    <string name="community_post_like">Thích bài viết</string>
+    <string name="community_post_comment">Bình luận</string>
+    <string name="community_post_share">Chia sẻ</string>
+    <string name="community_post_save">Lưu bài viết</string>
+    <string name="community_post_action_toast">Tuỳ chọn bài viết sẽ sớm có</string>
+    <string name="community_post_created_toast">Đã thêm bài viết mới</string>
+
+    <string name="community_post_author_joshua">joshua_l</string>
+    <string name="community_post_author_rajesh">rajesh_deshmukh</string>
+    <string name="community_author_you">you</string>
+    <string name="community_post_location_tokyo">Tokyo, Japan</string>
+    <string name="community_post_location_pune">Pune, India</string>
+    <string name="community_post_location_local">Local community</string>
+
+    <string name="community_post_media_counter_1_3">1/3</string>
+    <string name="community_post_media_counter_1_1">1/1</string>
+    <string name="community_post_liked_by">Liked by craig_love and 44,686 others</string>
+    <string name="community_post_liked_by_community">Liked by rescue_team and 1,204 others</string>
+    <string name="community_dynamic_liked_by_text">Liked by neighbors and 98 others</string>
+
+    <string name="community_post_caption_joshua">joshua_l The game in Japan was amazing I want to share some photos</string>
+    <string name="community_post_caption_rajesh">rajesh_deshmukh Free meals distribution at our ward community hall starts from 12 PM. Everyone in need is welcome.</string>
+    <string name="community_dynamic_caption_text">you Community update #%1$d just got posted from local data source.</string>
+    <string name="community_post_date_september_19">September 19</string>
+    <string name="community_post_date_january_19">January 19</string>
 </resources>
