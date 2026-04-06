@@ -101,4 +101,26 @@
     <string name="report_tap_on_map_hint">Hãy chạm vào bản đồ để chọn vị trí</string>
     <string name="report_location_selected">Đã chọn vị trí mới</string>
     <string name="report_lat_lng_fallback">%1$.6f, %2$.6f</string>
+
+    <string name="sos_screen_title">Lịch sử cứu trợ</string>
+    <string name="sos_reported_by_you">Đang chờ xử lý</string>
+    <string name="sos_reported_by_others">Hoàn thành</string>
+    <string name="sos_delete_report">Delete report</string>
+    <string name="sos_empty_reported_by_you">Bạn chưa tạo báo cáo nào</string>
+    <string name="sos_empty_reported_by_others">Chưa có báo cáo hoàn </string>
+    <string name="sos_deleted_toast">Đã xoá báo cáo</string>thành
+    <string name="sos_sample_location_1">Kothrud, Pune, 411038</string>
+    <string name="sos_sample_location_2">Bandra West, Mumbai, 400050</string>
+    <string name="sos_sample_location_3">Sector 15, Noida, 201301</string>
+    <string name="sos_sample_location_4">MG Road, Bengaluru, 560001</string>
+
+    <string name="sos_sample_title_accident">Road Accident</string>
+    <string name="sos_sample_title_flood">Flood Warning</string>
+    <string name="sos_sample_title_medical">Medical Emergency</string>
+    <string name="sos_sample_title_fire">Fire Incident</string>
+
+    <string name="sos_sample_description_accident">The incident involved the vehicle MH 41 AK 6543, which was involved in a collision between a car and a motorcycle. The accident resulted in a serious head injury for the biker. Urgent emergency services are needed at this location.</string>
+    <string name="sos_sample_description_flood">Heavy rain has caused water to rise quickly near the residential lane. Residents on the ground floor are requesting evacuation support and immediate relief assistance.</string>
+    <string name="sos_sample_description_medical">An elderly person has collapsed near the market area with signs of breathing difficulty. Bystanders are requesting an ambulance and first-aid response as soon as possible.</string>
+    <string name="sos_sample_description_fire">A small warehouse caught fire and smoke is spreading to nearby houses. Local people have moved away and are waiting for firefighters to control the situation.</string>
 </resources>

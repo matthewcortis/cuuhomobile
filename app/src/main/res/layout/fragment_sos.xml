@@ -1,22 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/report_background">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/tvSosTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:orientation="vertical">
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="50dp"
+        android:text="@string/sos_screen_title"
+        android:textColor="@color/report_text_primary"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/nav_sos"
-            android:textColor="@color/color_primary"
-            android:textSize="28sp"
+    <LinearLayout
+        android:id="@+id/layoutSosFilter"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="22dp"
+        android:background="@drawable/bg_sos_filter_group"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvSosTitle">
+
+        <TextView
+            android:id="@+id/btnReportedByYou"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/bg_sos_filter_selected"
+            android:gravity="center"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:text="@string/sos_reported_by_you"
+            android:textColor="@color/report_action_red"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/btnReportedByOthers"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:text="@string/sos_reported_by_others"
+            android:textColor="@color/report_label_inactive"
+            android:textSize="15sp"
             android:textStyle="bold" />
     </LinearLayout>
 
-</RelativeLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvEmergencyReports"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="18dp"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        android:paddingStart="22dp"
+        android:paddingEnd="22dp"
+        android:paddingBottom="110dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutSosFilter" />
+
+    <TextView
+        android:id="@+id/tvEmergencyEmpty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/sos_empty_reported_by_you"
+        android:textColor="@color/report_location_text"
+        android:textSize="16sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/rvEmergencyReports"
+        app:layout_constraintEnd_toEndOf="@id/rvEmergencyReports"
+        app:layout_constraintStart_toStartOf="@id/rvEmergencyReports"
+        app:layout_constraintTop_toTopOf="@id/rvEmergencyReports" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

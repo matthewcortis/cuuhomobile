@@ -40,6 +40,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
+    implementation(libs.recyclerview)
     implementation(libs.play.services.mlkit.text.recognition.common)
     implementation("com.google.android.gms:play-services-location:21.0.1")
     implementation("io.github.track-asia:android-sdk-opengl:2.0.2")

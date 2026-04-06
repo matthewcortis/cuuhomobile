@@ -1,6 +1,5 @@
 package com.example.cuutro;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,10 +32,6 @@ public class HomeActivity extends AppCompatActivity {
         restoreActiveFragment();
 
         bottomNavigationView.setOnItemSelectedListener(item -> {
-            if (item.getItemId() == R.id.nav_sos) {
-                startActivity(new Intent(this, ReportActivity.class));
-                return false;
-            }
             switchToTab(item.getItemId());
             return true;
         });
