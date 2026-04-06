@@ -124,7 +124,7 @@
     <string name="sos_sample_description_medical">An elderly person has collapsed near the market area with signs of breathing difficulty. Bystanders are requesting an ambulance and first-aid response as soon as possible.</string>
     <string name="sos_sample_description_fire">A small warehouse caught fire and smoke is spreading to nearby houses. Local people have moved away and are waiting for firefighters to control the situation.</string>
 
-    <string name="community_screen_title">Community Posts</string>
+    <string name="community_screen_title">Bản tin </string>
     <string name="community_create_post">Tạo bài viết cộng đồng</string>
     <string name="community_post_action">Tuỳ chọn bài viết</string>
     <string name="community_post_image">Ảnh bài viết cộng đồng</string>

@@ -70,7 +70,7 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/community_post_action"
             android:padding="4dp"
-            android:src="@drawable/ic_more_vertical"
+            android:src="@drawable/more_vert_24px"
             app:tint="@color/black" />
     </LinearLayout>
 
@@ -118,7 +118,7 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/community_post_like"
             android:padding="4dp"
-            android:src="@drawable/ic_community_like_outline"
+            android:src="@drawable/favorite_24px"
             app:tint="@color/black" />
 
         <ImageButton
@@ -128,7 +128,7 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/community_post_comment"
             android:padding="4dp"
-            android:src="@drawable/ic_community_comment_outline"
+            android:src="@drawable/chat_bubble_24px"
             app:tint="@color/black" />
 
         <ImageButton
@@ -138,7 +138,7 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/community_post_share"
             android:padding="4dp"
-            android:src="@drawable/ic_community_send_outline"
+            android:src="@drawable/send_24px"
             app:tint="@color/black" />
 
         <View
@@ -152,7 +152,7 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/community_post_save"
             android:padding="4dp"
-            android:src="@drawable/ic_community_bookmark_outline"
+            android:src="@drawable/bookmark_24px"
             app:tint="@color/black" />
     </LinearLayout>
 
