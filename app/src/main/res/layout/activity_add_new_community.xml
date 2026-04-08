@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/report_background"
-    tools:context=".AddNewCommunityActivity">
+    tools:context=".features.community.AddNewCommunityActivity">
 
     <LinearLayout
         android:id="@+id/layoutCreatePostHeader"

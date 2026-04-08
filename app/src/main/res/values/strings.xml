@@ -92,8 +92,8 @@
     <string name="report_track_my_location">Vị trí chính xác</string>
     <string name="report_confirm_location">Xác nhận địa chỉ</string>
     <string name="report_address_line_hint">Khu vực</string>
-    <string name="report_city_hint">Thành phố</string>
-    <string name="report_postal_hint">Mã bưu chính</string>
+    <string name="report_city_hint">Tỉnh / Thành phố</string>
+    <string name="report_postal_hint">Phường / Xã</string>
     <string name="report_location_permission_denied">Bạn chưa cấp quyền vị trí</string>
     <string name="report_location_unavailable">Không lấy được vị trí hiện tại</string>
     <string name="report_location_disabled">Hãy bật GPS/Vị trí để tiếp tục</string>
@@ -123,6 +123,12 @@
     <string name="sos_sample_description_flood">Heavy rain has caused water to rise quickly near the residential lane. Residents on the ground floor are requesting evacuation support and immediate relief assistance.</string>
     <string name="sos_sample_description_medical">An elderly person has collapsed near the market area with signs of breathing difficulty. Bystanders are requesting an ambulance and first-aid response as soon as possible.</string>
     <string name="sos_sample_description_fire">A small warehouse caught fire and smoke is spreading to nearby houses. Local people have moved away and are waiting for firefighters to control the situation.</string>
+    <string name="sos_setup_hint_line_1">Khi bạn gặp nguy hiểm!</string>
+    <string name="sos_setup_hint_click_prefix"> </string>
+    <string name="sos_setup_hint_sos_button">nút SOS </string>
+    <string name="sos_setup_hint_click_suffix">để thực hiện gọi khẩn cấp.</string>
+    <string name="sos_setup_volunteer_label">Giữ bình tĩnh và làm theo hướng dẫn</string>
+    <string name="sos_setup_volunteer_toggle">VoluNhấnteer availability</string>
 
     <string name="community_screen_title">Bản tin </string>
     <string name="community_create_post">Tạo bài viết cộng đồng</string>

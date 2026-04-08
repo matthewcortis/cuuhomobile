@@ -32,4 +32,9 @@
     <color name="report_label_inactive">#676C74</color>
     <color name="report_location_text">#5F6166</color>
     <color name="report_hint">#A9A9AF</color>
+    <color name="sos_instruction_text">#5F6475</color>
+    <color name="sos_toggle_surface">#F4F4F5</color>
+    <color name="sos_toggle_label">#433D4C</color>
+    <color name="sos_switch_track_off">#D6D9DF</color>
+    <color name="sos_button_ripple">#33FFFFFF</color>
 </resources>

@@ -18,10 +18,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Cuutro">
         <activity
-            android:name=".AddNewCommunityActivity"
+            android:name=".SosActivity"
             android:exported="false" />
         <activity
-            android:name=".ReportActivity"
+            android:name=".features.community.AddNewCommunityActivity"
+            android:exported="false" />
+        <activity
+            android:name=".features.report.ReportActivity"
             android:exported="false" />
         <activity
             android:name=".SplashActivity"
@@ -36,7 +39,7 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".AccountDetailsActivity"
+            android:name=".features.profile.AccountDetailsActivity"
             android:exported="false" />
         <activity
             android:name=".HomeActivity"

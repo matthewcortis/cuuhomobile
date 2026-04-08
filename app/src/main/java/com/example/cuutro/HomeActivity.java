@@ -7,10 +7,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.cuutro.ui.home.CommunityFragment;
-import com.example.cuutro.ui.home.HomeFragment;
-import com.example.cuutro.ui.home.ProfileFragment;
-import com.example.cuutro.ui.home.SosFragment;
+import com.example.cuutro.features.community.CommunityFragment;
+import com.example.cuutro.features.home.HomeFragment;
+import com.example.cuutro.features.profile.ProfileFragment;
+import com.example.cuutro.features.sos.SosFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomeActivity extends AppCompatActivity {
